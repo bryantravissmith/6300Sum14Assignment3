@@ -18,4 +18,11 @@
     <string name="weightTab">Weight</string>
     <string name="temperatureTab">Temperature</string>
     <string name="distanceTab">Distance</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+     <string-array name="unit_array">
+        <item>Distance</item>
+        <item>Temperature</item>
+        <item>Weight</item>
+    </string-array>
 </resources>

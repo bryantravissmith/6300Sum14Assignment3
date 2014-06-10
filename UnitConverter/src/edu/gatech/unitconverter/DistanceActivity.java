@@ -1,47 +1,48 @@
 package edu.gatech.unitconverter;
 
-import android.app.Activity;
-import android.content.Intent;
+
+
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
-public class DistanceActivity extends Activity {
+public class DistanceActivity extends Fragment implements View.OnClickListener{
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_distance);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
+	private EditText text;
+	private boolean isKm = false;
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	    // Respond to the action bar's Up/Home button
-	    case android.R.id.home:
-	        NavUtils.navigateUpFromSameTask(this);
-	        return true;
-	    }
-	    return super.onOptionsItemSelected(item);
+	public DistanceActivity(){
+		
 	}
+	 @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+	 	View rootView = inflater.inflate(R.layout.activity_distance, container, false);
+	 	text = (EditText) rootView.findViewById(R.id.distanceEditText1);
+	 	RadioButton button0 = (RadioButton) rootView.findViewById(R.id.radio0);
+	 	RadioButton button1 = (RadioButton) rootView.findViewById(R.id.radio1);
+        
+	 	button0.setOnClickListener(this);
+	 	button1.setOnClickListener(this);
+        	   
+	 	return rootView;
+     }
+	
 	
 	public void handleDistanceClick(View view){
 		boolean checked = ((RadioButton) view).isChecked();
-		
-		EditText text = (EditText) findViewById(R.id.distanceEditText1);
+
 		String txt = text.getText().toString();
+		Log.i("handleDistance",txt);
 		double distance;
-		if(txt != null){
-			distance = Double.parseDouble(txt);
-		} else {
+		if(txt.equals("")){
 			distance = 0.0;
+		} else {
+			distance = Double.parseDouble(txt);
 		}
 
 		
@@ -60,11 +61,26 @@ public class DistanceActivity extends Activity {
 	}
 	
 	public String kmToMile(double distance){
-		return String.valueOf(distance/1.6093);
+		if (isKm){
+			isKm = !isKm;
+			return String.valueOf(distance/1.6093);
+		} else {
+			return String.valueOf(distance);
+		}
 	}
 	
 	public String mileToKm(double distance){
-		return String.valueOf(distance*1.6093);
+		if (!isKm){
+			isKm = !isKm;
+			return String.valueOf(distance*1.6093);
+		} else {
+			return String.valueOf(distance);
+		}
+	}
+	
+	@Override
+	public void onClick(View v) {
+		handleDistanceClick(v);
 	}
 	
 	

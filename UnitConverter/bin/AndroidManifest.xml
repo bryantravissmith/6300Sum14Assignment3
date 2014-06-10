@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.gatech.unitconverter"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <application
@@ -21,22 +20,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="edu.gatech.unitconverter.DistanceActivity"
-            android:label="@string/title_activity_distance" 
-            android:parentActivityName="edu.gatech.unitconverter.MainActivity">
-            <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="edu.gatech.unitconverter.MainActivity" />
-        </activity>
-        <activity
-            android:name="edu.gatech.unitconverter.TemperatureActivity"
-            android:label="@string/title_activity_temperature" >
-        </activity>
-        <activity
-            android:name="edu.gatech.unitconverter.WeightActivity"
-            android:label="@string/title_activity_weight" >
         </activity>
     </application>
 

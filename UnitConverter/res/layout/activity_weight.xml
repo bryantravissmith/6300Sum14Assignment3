@@ -40,15 +40,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Kilograms" 
-            android:onClick="handleWeightClick"/>
+            android:text="Kilograms"/>
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pounds" 
-            android:onClick="handleWeightClick"/>
+            android:text="Pounds"/>
 
     </RadioGroup>
 

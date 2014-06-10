@@ -40,15 +40,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Miles" 
-            android:onClick="handleDistanceClick"/>
+            android:text="Miles" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kilometers" 
-            android:onClick="handleDistanceClick"/>
+            android:text="Kilometers" />
 
     </RadioGroup>
 

@@ -1,33 +1,40 @@
 package edu.gatech.unitconverter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-public class WeightActivity extends Activity {
+public class WeightActivity extends Fragment implements View.OnClickListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_weight);
-	}
+	private EditText text;
+	private boolean isPounds = false;
 	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_weight, container, false);
+        text = (EditText) rootView.findViewById(R.id.weightEditText1);
+	 	RadioButton button0 = (RadioButton) rootView.findViewById(R.id.radio0);
+	 	RadioButton button1 = (RadioButton) rootView.findViewById(R.id.radio1);
+        
+	 	button0.setOnClickListener(this);
+	 	button1.setOnClickListener(this);
+        	   
+	 	return rootView;
+    }
+
 	public void handleWeightClick(View view){
 		boolean checked = ((RadioButton) view).isChecked();
 		
-		EditText text = (EditText) findViewById(R.id.weightEditText1);
 		String txt = text.getText().toString();
 		double weight;
-		if(txt == null){
-			weight = Double.parseDouble(txt);
-		} else {
+		if(txt.equals("")){
 			weight = 0.0;
+		} else {
+			weight = Double.parseDouble(txt);
 		}
 
 		
@@ -46,39 +53,27 @@ public class WeightActivity extends Activity {
 	}
 	
 	public String kgToPound(double weight){
-		return String.valueOf(weight*2.20462);
+		if( isPounds ){
+			double w = weight*2.20462;
+			isPounds = !isPounds;
+			return String.valueOf(w);
+		} else {
+			return String.valueOf(weight);
+		}
 	}
 	
 	public String poundToKg(double weight){
-		return String.valueOf(weight/2.20462);
+		if (!isPounds){
+			double w = weight/2.20462;
+			isPounds = !isPounds;
+			return String.valueOf(w);
+		} else {
+			return String.valueOf(weight);
+		}
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main_activity_actions, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.distanceTab:
-	        	Intent distanceIntent = new Intent(this, DistanceActivity.class);
-	    		startActivity(distanceIntent);
-	            return true;
-	        case R.id.temperatureTab:
-	        	Intent temperatureIntent = new Intent(this, TemperatureActivity.class);
-	    		startActivity(temperatureIntent);
-	            return true;
-	        case R.id.weightTab:
-	        	Intent weightIntent = new Intent(this, DistanceActivity.class);
-	    		startActivity(weightIntent);
-	        	return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+	public void onClick(View v) {
+		handleWeightClick(v);
 	}
 }
