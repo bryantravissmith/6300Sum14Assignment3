@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/distanceTab" android:title="@string/distanceTab"></item>
+    <item android:id="@+id/weightTab" android:title="@string/weightTab"></item>
+    <item android:id="@+id/temperatureTab" android:title="@string/temperatureTab"></item>
+   
+</menu>
